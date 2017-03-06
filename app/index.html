@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./basic.css">
+    <link rel="stylesheet" href="./index.css">
+    <link rel="stylesheet" href="./assets/icon.css">
+  </head>
+  <body>
+    <header style="-webkit-app-region: drag" class="hd no-select">
+      <div class="left-sec bar-sec">
+        <div class="inline app-icon-wp">
+          <span class="icon-wytiny app-icon"></span>
+          <span class="app-name">王艺云音乐</span>
+        </div>
+        <div class="inline router-search-wp">
+          <span class="icon-left router-icon left-router"></span><span class="icon-left router-icon right-router inline"></span>
+          <div class="inline">
+            <span class="icon-search search-icon"></span>
+            <input type="text" name="" placeholder="搜索音乐，歌手，歌词，用户" class="search-ipt">
+          </div>
+        </div>
+        <div class="inline f-r mail-setting-wp">
+          <span class="icon-mail mail-icon"></span>
+          <span class="icon-setting"></span>
+        </div>
+      </div>
+      <div class="right-sec bar-sec">
+        
+      </div>
+    </header>
+    <div class="main fs0">
+      <div class="left-pad main-pad">
+        <div class="items-pad scroll">
+          <section class="list-sec no-select">
+            <p class="list-name">推荐</p>
+            <p class="list-item"><span class="icon-music  item-icon"></span>发现音乐</p>
+            <p class="list-item active-item"><span class="icon-fm item-icon"></span>私人FM</p>
+            <p class="list-item"><span class="icon-mv item-icon"></span>MV</p>
+            <p class="list-item"><span class="icon-friends item-icon"></span>朋友</p>
+          </section>
+          <section class="list-sec">
+            <p class="list-name">我的音乐</p>
+            <p class="list-item"><span class="icon-download item-icon"></span>下载</p>
+            <p class="list-item"><span class="icon-mine item-icon"></span>我的歌手</p>
+          </section>
+          <section class="list-sec">
+            <p class="list-name">创建的歌单</p>
+            <p class="list-item"><span class="icon-like item-icon"></span>喜欢</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>歌单A</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>歌单B</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>歌单C</p>
+          </section>
+          <section class="list-sec">
+            <p class="list-name">收藏的歌单</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>Love Live!</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>ご注文はうさぎですか</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>国士无双十三面待ち</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>嶺上開花三暗刻</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>立直のみ</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>無駄ツモ</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>六月是你的高考</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>种子歌核心课程</p>
+            <p class="list-item"><span class="icon-list item-icon"></span>しわしわ</p>
+          </section>
+        </div>
+        <div class="playing-pad">
+          <img src="http://7xjgb0.com1.z0.glb.clouddn.com/avatar-miyamori.png" class="play-img f-l">
+          <div class="playing-info">
+            <p class="song-name ellipsis">吉原ラメント</p>
+            <p class="singer">wytiny</p>
+            <span class="icon-share playing-icon share-icon"></span>
+            <span class="icon-like playing-icon suki-icon"></span>
+          </div>
+        </div>
+      </div>
+      <div class="right-pad main-pad f-r scroll">
+      </div>
+    </div>
+    <footer class="fix ft no-select">
+      <div class="inline ctrl-btn prev-btn">
+        <span class="icon-prev"></span>
+      </div>
+      <div class="inline ctrl-btn play-btn">
+        <span class="icon-stop"></span>
+      </div>
+      <div class="inline ctrl-btn next-btn">
+        <span class="icon-next"></span>
+      </div>
+      <div class="inline process-bar">
+        <span class="dot">·</span>
+      </div>
+      <span class="ft-time">2:23 / 4:12</span>
+      <div class="inline volume-sec">
+        <span class="icon-volume"></span>
+      </div>
+      <div class="inline volume-bar">
+      </div>
+      <div class="inline f-r right-ctrl">
+        <span class="icon-single icon"></span>
+        <span class="icon-lyric lyric-icon icon"></span>
+        <span class="icon-list list-icon icon"></span>
+        <span class="num">45</span>
+      </div>
+    </footer>
+  </body>
+  <script>
+    // You can also require other files to run in this process
+    require('./renderer.js')
+  </script>
+</html>

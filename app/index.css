@@ -5,9 +5,57 @@
   z-index: 100;
   cursor: default;
 }
+
 .bar-sec {
+  position: relative;
   padding-top: 30px;
   display: inline-block;
+}
+
+.my-avatar {
+  position: absolute;
+  width: 26px;
+  border-radius: 20px;
+  top: -24px;
+  left: 5px;
+}
+
+.my-avatar-wp {
+  width: 100%;
+  position: relative;
+}
+
+.my-avatar-wp::after {
+  position: absolute;
+  left: 36px;
+  top: -10px;
+  content: '';
+  width: 0;
+  height: 0;
+  border: transparent solid;
+  border-top-color: #fff;
+  border-width: 4px;
+}
+
+.transform-btn {
+  position: absolute;
+  top: -15px;
+  left: 35px;
+  width: 14px;
+  height: 10px;
+  background: rgba(0, 0, 0, .3);
+  border-radius: 2px;
+  box-shadow: 0 0 1px rgba(200, 200, 200, .2) inset;
+}
+
+.transform-btn-tail {
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  display: inline-block;
+  width: 7px;
+  height: 3px;
+  background: #ab2b2b;
 }
 
 .inline {
@@ -94,7 +142,7 @@
 .left-pad {
   padding-top: 5px;
   width: 200px;
-  border-right: 1px solid #ddd;
+  border-right: 1px solid #ccc;
   background: rgba(255, 255, 255, 0.48)
 }
 
@@ -106,8 +154,8 @@
 .playing-pad {
   height: 86px;
   width: 200px;
-  border-right: 1px solid #ddd;
-  border-top: 1px solid #ddd;
+  border-right: 1px solid #ccc;
+  border-top: 1px solid #ccc;
 }
 
 .playing-info {
@@ -192,8 +240,202 @@
 
 .right-pad {
   width: calc(100vw - 200px);
-  padding-left: 10px;
   background: #fafafa;
+  padding: 4rem calc(50% - 470px);
+}
+
+.p-img {
+  width: 260px;
+  border: 1px solid #888;
+  vertical-align: middle;
+}
+
+.p-img.current-img {
+  margin-left: -170px;
+  -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));
+}
+
+.current-wp {
+  position: relative;
+}
+
+.current-wp .current-status {
+  position: absolute;
+  right: 5px;
+  bottom: 5px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, .38);
+  box-shadow: 0 0 1px #777;
+  text-align: center;
+  line-height: 48px;
+  font-size: 22px;
+  color: #eee;
+}
+
+.p-img.prev-img {
+  width: 200px;
+  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(80%, transparent) , to(rgba(250, 250, 250, 0.1)));
+}
+
+.main-play-ctrl {
+  margin-top: 50px;
+  color: #777;
+}
+
+.main-play-ctrl span {
+  display: inline-block;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  font-size: 20px;
+  border: 1px solid #dedede;
+  text-align: center;
+  line-height: 44px;
+  margin: 0 14px;
+}
+
+.name-title {
+  color: #333;
+  font-size: 22px;
+  margin-top: -15px;
+}
+
+.label {
+  display: inline-block;
+  color: #d12323;
+  font-size: 12px;
+  padding: 1px 2px;
+  border-radius: 2px;
+  line-height: 12px;
+  border: 1px solid #d12323;
+  vertical-align: 4px;
+  -webkit-user-select: none;
+}
+
+.info-lyric {
+  padding-left: 30px;
+}
+
+.info {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.main-pad-sec {
+  vertical-align: top;
+}
+
+.main-singer {
+  margin-left: 80px;
+}
+
+.linear-bar {
+  height: 1px;
+  width: 100%;
+  margin-top: 15px;
+  background: linear-gradient(to right, #dedede, #dedede 70%, transparent 100%);
+}
+
+.lyric-pad {
+  width: 115%;
+  height: 280px;
+  margin-top: 10px;
+  border-right: 1px solid #dedede;
+}
+
+.lyric-pad::-webkit-scrollbar-thumb {
+  border-radius: 0;
+  background: rgba(200, 200, 200, .8);
+}
+
+.lyric-item {
+  font-size: 13px;
+  color: #666;
+  line-height: 26px;
+  margin: 10px 0;
+}
+
+.comment-wp {
+  width: 100%;
+  margin-top: 30px;
+  color: #333;
+}
+
+.comment-title {
+  font-size: 20px;
+}
+
+.comment-bar {
+  position: relative;
+  height: 1px;
+  width: 100%;
+  margin-top: 10px;
+  background-color: #ddd;
+}
+
+.comment-bar::before {
+  content: '';
+  position: absolute;
+  height: 4px;
+  width: 80px;
+  left: 0;
+  top: -4px;
+  background: #ddd;
+}
+
+.comment-num {
+  color: #888;
+  font-size: 12px;
+  margin-left: 10px;
+}
+
+.comment-input {
+  position: relative;
+  border: 1px solid #bbb;
+  margin-top: 20px;
+  padding: 10px;
+  padding-bottom: 20px;
+}
+
+.comment-textarea {
+  border: 1px solid #bbb;
+  border-radius: 4px;
+  font-size: 12px;
+  padding: 10px;
+  width: 100%;
+  height: 44px;
+  resize: none;
+}
+
+.comment-input::after {
+  content: '140';
+  position: absolute;
+  right: 15px;
+  top: 35px;
+  font-size: 12px;
+  color: #aaa;
+}
+
+.comment-ctrl {
+  color: #555;
+  font-size: 20px;
+  margin-top: 5px;
+}
+
+.comment-btn {
+  border-radius: 4px;
+  padding: 2px 8px;
+  font-size: 12px;
+  box-shadow: 0 0 1px #333;
+}
+
+.link {
+  color: #3884c3;
+  cursor: pointer;
 }
 
 .scroll {
@@ -206,7 +448,7 @@
   left: 0;
   width: 100vw;
   height: 65px;
-  border-top: 1px solid #ddd;
+  border-top: 1px solid #ccc;
   background: rgba(255, 255, 255, 0.48);
   line-height: 65px;
   padding-right: 15px;
@@ -236,8 +478,18 @@
   margin: 0 20px 0 36px;
   height: 4px;
   border-radius: 2px;
-  background: #d12323;
+  background: #c2c2c2;
   vertical-align: middle;
+}
+
+.loaded {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 240px;
+  height: 4px;
+  border-radius: 2px;
+  background: #d12323;
 }
 
 .dot {

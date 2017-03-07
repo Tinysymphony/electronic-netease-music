@@ -19,7 +19,9 @@ function createWindow () {
     minWidth: 1000,
     minHeight: 670,
     titleBarStyle: 'hidden-inset',
-    vibrancy: 'light'
+    vibrancy: 'popover',
+    show: false,
+    center: true
   })
 
   mainWindow.loadURL(url.format({
@@ -27,6 +29,12 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
+
+  mainWindow.on('ready-to-show', function () {
+    setTimeout(function () {
+      mainWindow.show();
+    }, 100)
+  })
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()

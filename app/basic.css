@@ -16,7 +16,7 @@ body {
 }
 a { text-decoration: none; }
 li { list-style-type: none; }
-input { outline: none; border: none; }
+input, textarea { outline: none; border: none; }
 .text-center {
   text-align: center;
 }

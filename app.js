@@ -1,8 +1,11 @@
+/**
+ * Created by TinySymphony on 2017-03-06.
+ */
+
 const electron = require('electron')
 // Module to control application life.
-const app = electron.app
+const {app, globalShortcut, BrowserWindow} = electron
 // Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow
 
 const path = require('path')
 const url = require('url')
@@ -10,8 +13,11 @@ const url = require('url')
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow
+let lyricWindow
 
 function createWindow () {
+  require('./app/module/menu')
+
   // Create the browser window.
   mainWindow = new BrowserWindow({
     width: 1000,
@@ -24,8 +30,10 @@ function createWindow () {
     center: true
   })
 
+  process.$mainWindow = mainWindow
+
   mainWindow.loadURL(url.format({
-    pathname: path.resolve(__dirname, './app/index.html'),
+    pathname: path.resolve(__dirname, './app/module/home/index.html'),
     protocol: 'file:',
     slashes: true
   }))
@@ -46,6 +54,10 @@ function createWindow () {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  // globalShortcut.register('CommandOrControl+Alt+M', () => {
+  //  // TODO: focus app
+  // })
 }
 
 // This method will be called when Electron has finished

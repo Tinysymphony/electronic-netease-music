@@ -252,7 +252,7 @@
 
 .p-img.current-img {
   margin-left: -170px;
-  -webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));
+  /*-webkit-box-reflect: below 0 -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));*/
 }
 
 .current-wp {
@@ -277,7 +277,7 @@
 
 .p-img.prev-img {
   width: 200px;
-  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(80%, transparent) , to(rgba(250, 250, 250, 0.1)));
+  /*-webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(80%, transparent) , to(rgba(250, 250, 250, 0.1)));*/
 }
 
 .main-play-ctrl {
@@ -317,6 +317,11 @@
 
 .info-lyric {
   padding-left: 30px;
+}
+
+.lyric-item.active-lyric {
+  color: #b3291c;
+  font-weight: bold;
 }
 
 .info {

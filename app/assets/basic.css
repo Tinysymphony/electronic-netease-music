@@ -66,3 +66,6 @@ input, textarea { outline: none; border: none; }
   border-radius: 10px;
   background-color: #aaa;
 }
+.pointer {
+  cursor: pointer;
+}

@@ -22,10 +22,29 @@
       vertical-align: middle;
       margin-right: 15px;
     }
+    .close {
+      position: fixed;
+      left: 10px;
+      top: 0px;
+      font-size: 20px;
+      text-shadow: 0 0 1px #333;
+      display: none;
+    }
+    body:hover .close{
+      display: inline-block;
+    }
   </style>
-  <body style="-webkit-app-region: drag;">
+  <body style="-webkit-app-region: drag;" class="no-select">
+    <span class="close" id="J-close">x</span>
     <div class="lyric">
       <span class="icon-wytiny icon"></span>云音乐，享受好声音
     </div>
   </body>
+  <script type="text/javascript">
+    const {ipcRenderer} = require('electron')
+    const {CLOSE_LYRIC} = require('../IPC_CONSTANTS.js');
+    document.getElementById('J-close').addEventListener('click', function () {
+      ipcRenderer.send(CLOSE_LYRIC)
+    }, false)
+  </script>
 </html>

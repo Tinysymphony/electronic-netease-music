@@ -1,21 +1,21 @@
 {
-  "name": "electron-quick-start",
-  "version": "1.0.0",
-  "description": "A minimal Electron application",
+  "name": "Electronic-Netease-Music",
+  "version": "0.0.1",
+  "description": "Netease Music built by Electron",
   "main": "app.js",
   "scripts": {
     "start": "electron ."
   },
-  "repository": "https://github.com/electron/electron-quick-start",
+  "repository": "https://github.com/Tinysymphony/electronic-netease-music",
   "keywords": [
     "Electron",
-    "quick",
-    "start",
-    "tutorial",
+    "Netease",
+    "music",
+    "desktop",
     "demo"
   ],
-  "author": "GitHub",
-  "license": "CC0-1.0",
+  "author": "wytiny",
+  "license": "MIT",
   "devDependencies": {
     "electron": "^1.4.1"
   }

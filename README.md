@@ -2,7 +2,7 @@
 
 NetEase Music Electron Application (`_(:з」∠)_`)...基于Electron的山寨网易云音乐
 
-![](http://7xjgb0.com1.z0.glb.clouddn.com/wytiny-music.png)
+![](./Snapshot/wytiny-music.png)
 
 ## Usage
 

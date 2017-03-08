@@ -16,6 +16,9 @@ const {
   app,
   Menu
 } = require('electron')
+/**
+ * MenuItem  click(menuItem, browserWindow, event)
+ */
 let menuList = [{
   label: app.getName(),
   submenu: [{
@@ -73,6 +76,12 @@ let menuList = [{
   }, {
     role: 'close'
   }, {
+    role: 'zoomin'
+  }, {
+    role: 'zoomout'
+  }, {
+    role: 'resetzoom'
+  }, {
     role: 'help'
   }]
 }, {
@@ -108,6 +117,14 @@ let menuList = [{
     click: toggleLyric
   }]
 }]
+if (process.env.DEV) {
+  menuList.push({
+    label: 'Developer',
+    submenu: [{
+      role: 'toggledevtools'
+    }]
+  })
+}
 const menu = Menu.buildFromTemplate(menuList)
 // add menu after application is ready
 Menu.setApplicationMenu(menu)

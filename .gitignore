@@ -1,1 +1,11 @@
+# node.js
 node_modules
+npm-debug.log
+
+# bundled app
+build/
+
+# Mac OS
+.DS_Store
+
+coverage/

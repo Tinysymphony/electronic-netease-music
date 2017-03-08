@@ -4,7 +4,6 @@
 const {ipcMain} = require('electron')
 const $ = require('./IPC_CONSTANTS')
 const {closeLyric} = require('./lyric')
-
 ipcMain.on($.CLOSE_LYRIC, () => {
   closeLyric()
 })

@@ -9,6 +9,7 @@ const {app, globalShortcut, BrowserWindow} = electron
 
 const path = require('path')
 const url = require('url')
+const notification = require('./app/module/notification')
 
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
@@ -43,6 +44,9 @@ function createWindow () {
       mainWindow.show();
     }, 100)
   })
+  // mainWindow.webContents.on('did-finish-load', function() {
+  //     mainWindow.show();
+  // });
 
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
@@ -58,6 +62,9 @@ function createWindow () {
   // globalShortcut.register('CommandOrControl+Alt+M', () => {
   //  // TODO: focus app
   // })
+  require('./app/module/tray')
+
+  remark()
 }
 
 // This method will be called when Electron has finished
@@ -81,6 +88,27 @@ app.on('activate', function () {
     createWindow()
   }
 })
+
+function remark() {
+  const YES = '当然有'
+  notification.notify({
+    title: '欢迎使用',
+    message: '对于wytiny云音乐的新版本有什么意见？',
+    closeLabel: '没有喔',
+    actions: YES
+  }, function (err, res, meta) {
+    if(err) throw(err)
+    if(meta.activationValue !== YES) return
+    notification.notify({
+      title: '意见反馈',
+      message: '请在下面填写您的意见，我们会及时跟进~',
+      reply: true
+    }, function (err, res, meta) {
+      if(err) throw(err)
+      console.log(meta);
+    })
+  });
+}
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.

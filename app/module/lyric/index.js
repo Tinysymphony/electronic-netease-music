@@ -39,6 +39,8 @@ function openLyric() {
 }
 
 function _createLyricWindow($main) {
+  // screen can only be used after app is ready
+  const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
   var win = new BrowserWindow({
     parent: $main,
     width: 800,
@@ -47,6 +49,8 @@ function _createLyricWindow($main) {
     maxHeight: 70,
     minWidth: 480,
     frame: false,
+    x: (width - 800) / 2,
+    y: height - 140,
     vibrancy: 'dark',
     alwaysOnTop: true
   })

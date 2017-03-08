@@ -4,7 +4,8 @@
   "description": "Netease Music built by Electron",
   "main": "app.js",
   "scripts": {
-    "start": "electron ."
+    "start": "DEV=true electron .",
+    "build": "electron-packager . TinyMusic --arch=x64 --platform=darwin --out=./build --overwrite --icon=./music.icns"
   },
   "repository": "https://github.com/Tinysymphony/electronic-netease-music",
   "keywords": [
@@ -17,6 +18,10 @@
   "author": "wytiny",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.4.1"
+    "electron": "^1.4.1",
+    "electron-packager": "^8.5.2"
+  },
+  "dependencies": {
+    "node-notifier": "^5.0.2"
   }
 }

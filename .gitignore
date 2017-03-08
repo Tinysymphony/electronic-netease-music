@@ -4,6 +4,7 @@ npm-debug.log
 
 # bundled app
 build/
+dist/
 
 # Mac OS
 .DS_Store

@@ -5,7 +5,9 @@
   "main": "app.js",
   "scripts": {
     "start": "DEV=true electron .",
-    "build": "electron-packager . TinyMusic --arch=x64 --platform=darwin --out=./build --overwrite --icon=./music.icns"
+    "clean:osx": "rm -rf ./dist/osx",
+    "pack:osx": "electron-packager . TinyMusic --arch=x64 --platform=darwin --out=./dist/osx --overwrite --icon=./music.icns",
+    "build:osx": "npm run pack:osx && build dist/osx/TinyMusic-darwin-x64/TinyMusic.app --platform=mac --config=builder.json"
   },
   "repository": "https://github.com/Tinysymphony/electronic-netease-music",
   "keywords": [
@@ -19,6 +21,7 @@
   "license": "MIT",
   "devDependencies": {
     "electron": "^1.4.1",
+    "electron-builder": "^15.1.1",
     "electron-packager": "^8.5.2"
   },
   "dependencies": {

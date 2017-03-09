@@ -5,9 +5,35 @@
   "main": "app.js",
   "scripts": {
     "start": "DEV=true electron .",
+    "clean": "rm -rf ./dist",
     "clean:osx": "rm -rf ./dist/osx",
     "pack:osx": "electron-packager . TinyMusic --arch=x64 --platform=darwin --out=./dist/osx --overwrite --icon=./music.icns",
-    "build:osx": "npm run pack:osx && build dist/osx/TinyMusic-darwin-x64/TinyMusic.app --platform=mac --config=builder.json"
+    "build:osx": "npm run pack:osx && build dist/osx/TinyMusic-darwin-x64/TinyMusic.app --platform=mac"
+  },
+  "build": {
+    "asar": true,
+    "icon": "music.icns",
+    "appId": "com.wytiny.tinymusic",
+    "dmg": {
+      "background": "app/assets/img/sea.png",
+      "title": "wytiny云音乐",
+      "contents": [
+        {
+          "x": 90,
+          "y": 100
+        },
+        {
+          "x": 280,
+          "y": 100,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ],
+      "window": {
+        "width": 370,
+        "height": 220
+      }
+    }
   },
   "repository": "https://github.com/Tinysymphony/electronic-netease-music",
   "keywords": [

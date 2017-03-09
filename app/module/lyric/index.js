@@ -19,30 +19,29 @@ function toggleLyric() {
 function closeLyric() {
   const $main = _getMainWindow()
   if (!$main || !lyricWindow) return
-  lyricWindow.hide();
+  lyricWindow.hide()
 }
 
 function openLyric() {
   const $main = _getMainWindow();
   if (!$main) return
   if (!lyricWindow) {
-    lyricWindow = _createLyricWindow($main);
+    lyricWindow = _createLyricWindow();
     lyricWindow.on('close', () => {
       lyricWindow = null
     })
     lyricWindow.on('ready-to-show', () => {
-      lyricWindow.show();
+      lyricWindow.show()
     })
   } else {
-    lyricWindow.show();
+    lyricWindow.show()
   }
 }
 
-function _createLyricWindow($main) {
+function _createLyricWindow() {
   // screen can only be used after app is ready
   const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
   var win = new BrowserWindow({
-    parent: $main,
     width: 800,
     height: 70,
     minHeight: 70,

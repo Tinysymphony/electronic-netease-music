@@ -6,175 +6,186 @@
     <link rel="stylesheet" href="../../assets/icon.css">
     <link rel="stylesheet" href="./index.css">
     <title>wytiny-music</title>
+    <!-- <script src="https://cdn.bootcss.com/vue/2.2.1/vue.js" charset="utf-8"></script> -->
+    <script src="./vue.min.js" charset="utf-8"></script>
   </head>
   <body>
-    <header style="-webkit-app-region: drag" class="hd no-select">
-      <div class="left-sec bar-sec">
-        <div class="inline app-icon-wp">
-          <span class="icon-wytiny app-icon"></span>
-          <span class="app-name">云音乐</span>
-        </div>
-        <div class="inline router-search-wp">
-          <span class="icon-left router-icon left-router"></span><span class="icon-left router-icon right-router inline"></span>
-          <div class="inline">
-            <span class="icon-search search-icon"></span>
-            <input type="text" name="" placeholder="搜索音乐，歌手，歌词，用户" class="search-ipt">
+    <div id="app">
+      <header style="-webkit-app-region: drag" class="hd no-select">
+        <div class="left-sec bar-sec">
+          <div class="inline app-icon-wp">
+            <span class="icon-wytiny app-icon"></span>
+            <span class="app-name">云音乐</span>
+          </div>
+          <div class="inline router-search-wp">
+            <span class="icon-left router-icon left-router"></span><span class="icon-left router-icon right-router inline"></span>
+            <div class="inline">
+              <span class="icon-search search-icon"></span>
+              <input type="text" name="" placeholder="搜索音乐，歌手，歌词，用户" class="search-ipt">
+            </div>
+          </div>
+          <div class="inline f-r mail-setting-wp">
+            <span class="icon-mail mail-icon"></span>
+            <span class="icon-setting"></span>
           </div>
         </div>
-        <div class="inline f-r mail-setting-wp">
-          <span class="icon-mail mail-icon"></span>
-          <span class="icon-setting"></span>
-        </div>
-      </div>
-      <div class="right-sec bar-sec">
-        <div class="my-avatar-wp">
-          <img src="http://7xjgb0.com1.z0.glb.clouddn.com/avatar-miyamori.png" class="my-avatar">
-        </div>
-        <div class="transform-btn f-r">
-          <span class="transform-btn-tail"></span>
-        </div>
-      </div>
-    </header>
-    <div class="main fs0">
-      <div class="left-pad main-pad no-select">
-        <div class="items-pad scroll">
-          <section class="list-sec no-select">
-            <p class="list-name">推荐</p>
-            <p class="list-item"><span class="icon-music  item-icon"></span>发现音乐</p>
-            <p class="list-item active-item"><span class="icon-fm item-icon"></span>私人FM</p>
-            <p class="list-item"><span class="icon-mv item-icon"></span>MV</p>
-            <p class="list-item"><span class="icon-friends item-icon"></span>朋友</p>
-          </section>
-          <section class="list-sec">
-            <p class="list-name">我的音乐</p>
-            <p class="list-item"><span class="icon-download item-icon"></span>下载</p>
-            <p class="list-item"><span class="icon-mine item-icon"></span>我的歌手</p>
-          </section>
-          <section class="list-sec">
-            <p class="list-name">创建的歌单</p>
-            <p class="list-item"><span class="icon-like item-icon"></span>喜欢 ☆</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>偽物同士</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>非传统国语歌选修</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>睡个好觉_(:з」∠)_</p>
-          </section>
-          <section class="list-sec">
-            <p class="list-name">收藏的歌单</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>Love Live!</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>ご注文はうさぎですか</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>国士无双十三面待ち</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>嶺上開花三暗刻</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>立直のみ</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>無駄ツモ</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>六月是你的高考</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>种子歌核心课程</p>
-            <p class="list-item"><span class="icon-list item-icon"></span>しわしわ</p>
-          </section>
-        </div>
-        <div class="playing-pad no-select">
-          <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-1.jpg" class="play-img f-l">
-          <div class="playing-info">
-            <p class="song-name ellipsis pointer">吉原ラメント</p>
-            <p class="singer pointer">wytiny</p>
-            <span class="icon-share playing-icon share-icon"></span>
-            <span class="icon-like playing-icon suki-icon"></span>
+        <div class="right-sec bar-sec">
+          <div class="my-avatar-wp">
+            <img src="http://7xjgb0.com1.z0.glb.clouddn.com/avatar-miyamori.png" class="my-avatar">
+          </div>
+          <div class="transform-btn f-r" @click="useMusicBox">
+            <span class="transform-btn-tail"></span>
           </div>
         </div>
-      </div>
-      <div class="right-pad main-pad f-r scroll">
-        <div class="inline main-pad-sec no-select">
-          <div class="inline">
-            <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-2.png" class="p-img prev-img">
+      </header>
+      <div class="main fs0">
+        <div class="left-pad main-pad no-select">
+          <div class="items-pad scroll">
+            <section class="list-sec no-select">
+              <p class="list-name">推荐</p>
+              <p class="list-item"
+                @click="changePage(item, 'r')"
+                v-bind:class="{'active-item': activePage.id === item.id}"
+                v-for="item in recommendList">
+                <span v-bind:class="[item.icon, 'item-icon']"></span>
+                {{item.name}}
+              </p>
+            </section>
+            <section class="list-sec">
+              <p class="list-name">我的音乐</p>
+              <p class="list-item"
+                @click="changePage(item, 'm')"
+                v-bind:class="{'active-item': activePage.id === item.id}"
+                v-for="item in myMusic">
+                <span v-bind:class="[item.icon, 'item-icon']"></span>
+                {{item.name}}
+              </p>
+            </section>
+            <section class="list-sec">
+              <p class="list-name">创建的歌单</p>
+              <p class="list-item"
+                @click="changePage(item, 'u')"
+                v-bind:class="{'active-item': activePage.id === item.id}"
+                v-for="item in userList">
+                <span v-bind:class="[item.icon || 'icon-list', 'item-icon']"></span>
+                {{item.name}}
+              </p>
+            </section>
+            <section class="list-sec">
+              <p class="list-name">收藏的歌单</p>
+              <p class="list-item"
+                @click="changePage(item, 'f')"
+                v-bind:class="{'active-item': activePage.id === item.id}"
+                v-for="item in favorList"><span class="icon-list item-icon"></span>
+                {{item.name}}
+              </p>
+            </section>
           </div>
-          <div class="inline current-wp">
-            <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-1.jpg" class="p-img current-img">
-            <span class="current-status icon-stop inline"></span>
-          </div>
-          <div class="main-play-ctrl">
-            <span class="icon-like"></span>
-            <span class="icon-gomi"></span>
-            <span class="icon-next-2"></span>
-            <span class="icon-more"></span>
+          <div class="playing-pad no-select">
+            <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-1.jpg" class="play-img f-l">
+            <div class="playing-info">
+              <p class="song-name ellipsis pointer">吉原ラメント</p>
+              <p class="singer pointer">wytiny</p>
+              <span class="icon-share playing-icon share-icon"></span>
+              <span class="icon-like playing-icon suki-icon"></span>
+            </div>
           </div>
         </div>
-        <div class="inline main-pad-sec info-lyric">
-          <p class="name-title">我可能听了假的云音乐 <span class="label">MV</span> <span class="label">320k</span></p>
-          <p class="info"><span class="set">专辑：<a class="link">蜜汁新歌慢摇116</a></span><span class="main-singer">歌手：<a class="link">テレサ・テン</a></span></p>
-          <p class="linear-bar"></p>
-          <div class="lyric-wp">
-            <div class="scroll lyric-pad">
-              <p class="lyric-item">作曲：荒木とよひさ</p>
-              <p class="lyric-item">作词：三木たかし</p>
-              <div class="lyric-item">
-                <p>窓に西日があたる部屋は</p>
-                <p>夕阳透过窗照进空房</p>
+        <div class="right-pad main-pad f-r scroll">
+          <div class="inline main-pad-sec no-select">
+            <div class="inline">
+              <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-2.png" class="p-img prev-img">
+            </div>
+            <div class="inline current-wp">
+              <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-1.jpg" class="p-img current-img">
+              <span class="current-status icon-stop inline"></span>
+            </div>
+            <div class="main-play-ctrl">
+              <span class="icon-like click" @click="unDeveloped"></span>
+              <span class="icon-gomi click" @click="unDeveloped"></span>
+              <span class="icon-next-2 click" @click="unDeveloped"></span>
+              <span class="icon-more click" @click="unDeveloped"></span>
+            </div>
+          </div>
+          <div class="inline main-pad-sec info-lyric">
+            <p class="name-title">我可能听了假的云音乐 <span class="label">MV</span> <span class="label">320k</span></p>
+            <p class="info"><span class="set">专辑：<a class="link">蜜汁新歌慢摇116</a></span><span class="main-singer">歌手：<a class="link">テレサ・テン</a></span></p>
+            <p class="linear-bar"></p>
+            <div class="lyric-wp">
+              <div class="scroll lyric-pad">
+                <p class="lyric-item">作曲：荒木とよひさ</p>
+                <p class="lyric-item">作词：三木たかし</p>
+                <div class="lyric-item">
+                  <p>窓に西日があたる部屋は</p>
+                  <p>夕阳透过窗照进空房</p>
+                </div>
+                <div class="lyric-item active-lyric">
+                  <p>いつもあなたの匂いがするわ</p>
+                  <p>时常能嗅到你的味道</p>
+                </div>
+                <div class="lyric-item">
+                  <p>ひとり暮らせば思い出すから</p>
+                  <p>一人独处时回忆泛起</p>
+                </div>
+                <div class="lyric-item">
+                  <p>壁の傷も残したままおいておくわ</p>
+                  <p>墙壁的裂痕也放任不理</p>
+                </div>
+                <div class="lyric-item">
+                  <p>愛をつぐなえば別れになるけど</p>
+                  <p>想偿还爱却还是分开</p>
+                </div>
+                <div class="lyric-item">
+                  <p>こんな女でも忘れないでね</p>
+                  <p>别忘了这样的女人</p>
+                </div>
               </div>
-              <div class="lyric-item active-lyric">
-                <p>いつもあなたの匂いがするわ</p>
-                <p>时常能嗅到你的味道</p>
-              </div>
-              <div class="lyric-item">
-                <p>ひとり暮らせば思い出すから</p>
-                <p>一人独处时回忆泛起</p>
-              </div>
-              <div class="lyric-item">
-                <p>壁の傷も残したままおいておくわ</p>
-                <p>墙壁的裂痕也放任不理</p>
-              </div>
-              <div class="lyric-item">
-                <p>愛をつぐなえば別れになるけど</p>
-                <p>想偿还爱却还是分开</p>
-              </div>
-              <div class="lyric-item">
-                <p>こんな女でも忘れないでね</p>
-                <p>别忘了这样的女人</p>
+            </div>
+          </div>
+          <div class="comment-wp">
+            <p class="comment-title no-select">听友评论 <span class="comment-num">(已有1024条评论)</span></p>
+            <div class="comment-bar"></div>
+            <div class="comment-input">
+              <textarea name="comment" class="comment-textarea"></textarea>
+              <div class="comment-ctrl no-select">
+                <span class="icon-smile"></span>
+                <span class="icon-at"></span>
+                <span class="comment-btn f-r">评论</span>
               </div>
             </div>
           </div>
         </div>
-        <div class="comment-wp">
-          <p class="comment-title no-select">听友评论 <span class="comment-num">(已有1024条评论)</span></p>
-          <div class="comment-bar"></div>
-          <div class="comment-input">
-            <textarea name="comment" class="comment-textarea"></textarea>
-            <div class="comment-ctrl no-select">
-              <span class="icon-smile"></span>
-              <span class="icon-at"></span>
-              <span class="comment-btn f-r">评论</span>
-            </div>
-          </div>
-        </div>
       </div>
+      <footer class="fix ft no-select" id="J-footer">
+        <div class="inline ctrl-btn prev-btn" @click="unDeveloped">
+          <span class="icon-prev"></span>
+        </div>
+        <div class="inline ctrl-btn play-btn" @click="unDeveloped">
+          <span class="icon-stop"></span>
+        </div>
+        <div class="inline ctrl-btn next-btn" @click="unDeveloped">
+          <span class="icon-next"></span>
+        </div>
+        <div class="inline process-bar">
+          <div class="inline loaded"></div>
+          <span class="dot">·</span>
+        </div>
+        <span class="ft-time">2:23 / 4:12</span>
+        <div class="inline volume-sec">
+          <span class="icon-volume"></span>
+        </div>
+        <div class="inline volume-bar">
+        </div>
+        <div class="inline f-r right-ctrl">
+          <span class="icon-single icon"></span>
+          <span class="icon-lyric lyric-icon icon"></span>
+          <span class="icon-list list-icon icon"></span>
+          <span class="num">45</span>
+        </div>
+      </footer>
     </div>
-    <footer class="fix ft no-select" id="J-footer">
-      <div class="inline ctrl-btn prev-btn">
-        <span class="icon-prev"></span>
-      </div>
-      <div class="inline ctrl-btn play-btn">
-        <span class="icon-stop"></span>
-      </div>
-      <div class="inline ctrl-btn next-btn">
-        <span class="icon-next"></span>
-      </div>
-      <div class="inline process-bar">
-        <div class="inline loaded"></div>
-        <span class="dot">·</span>
-      </div>
-      <span class="ft-time">2:23 / 4:12</span>
-      <div class="inline volume-sec">
-        <span class="icon-volume"></span>
-      </div>
-      <div class="inline volume-bar">
-      </div>
-      <div class="inline f-r right-ctrl">
-        <span class="icon-single icon"></span>
-        <span class="icon-lyric lyric-icon icon"></span>
-        <span class="icon-list list-icon icon"></span>
-        <span class="num">45</span>
-      </div>
-    </footer>
+    <script>
+      require('./renderer.js')
+    </script>
   </body>
-  <script>
-    // You can also require other files to run in this process
-    require('./renderer.js')
-  </script>
 </html>

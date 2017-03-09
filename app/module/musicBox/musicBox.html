@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TinyMusic</title>
+    <link rel="stylesheet" href="../../assets/basic.css">
+    <link rel="stylesheet" href="../../assets/icon.css">
+    <style media="screen">
+      body {
+        height: 100vh;
+        width: 100vw;
+        background: #fff;
+        color: #888;
+        padding: 5px;
+      }
+      .close {
+        font-size: 20px;
+      }
+      .open {
+        width: 10px;
+        height: 8px;
+        border: 2px solid #888;
+        border-radius: 2px;
+      }
+      .ctrl {
+        display: block;
+      }
+    </style>
+  </head>
+  <body style="-webkit-app-region: drag;" class="no-select">
+    <span class="close ctrl" id="J-close">x</span>
+    <span class="open ctrl" id="J-open"></span>
+    <script type="text/javascript">
+      const {ipcRenderer} = require('electron')
+      const $ = require('../IPC_CONSTANTS')
+      document.getElementById('J-open').addEventListener('click', function (e) {
+        ipcRenderer.send($.CLOSE_MUSIC_BOX)
+      }, false)
+    </script>
+  </body>
+</html>

@@ -67,6 +67,16 @@ let menuList = [{
   }, {
     // 重做
     role: 'redo'
+  }, {
+    role: 'copy'
+  }, {
+    role: 'paste'
+  }, {
+    role: 'pasteandmatchstyle'
+  }, {
+    role: 'selectall'
+  }, {
+    role: 'delete'
   }]
 }, {
   // 窗口菜单

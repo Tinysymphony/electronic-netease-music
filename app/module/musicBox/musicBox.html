@@ -5,37 +5,54 @@
     <title>TinyMusic</title>
     <link rel="stylesheet" href="../../assets/basic.css">
     <link rel="stylesheet" href="../../assets/icon.css">
-    <style media="screen">
-      body {
-        height: 100vh;
-        width: 100vw;
-        background: #fff;
-        color: #888;
-        padding: 5px;
-      }
-      .close {
-        font-size: 20px;
-      }
-      .open {
-        width: 10px;
-        height: 8px;
-        border: 2px solid #888;
-        border-radius: 2px;
-      }
-      .ctrl {
-        display: block;
-      }
-    </style>
+    <link rel="stylesheet" href="./style.css">
+    <script src="../../assets/vue.min.js" charset="utf-8"></script>
   </head>
-  <body style="-webkit-app-region: drag;" class="no-select">
-    <span class="close ctrl" id="J-close">x</span>
-    <span class="open ctrl" id="J-open"></span>
-    <script type="text/javascript">
-      const {ipcRenderer} = require('electron')
-      const $ = require('../IPC_CONSTANTS')
-      document.getElementById('J-open').addEventListener('click', function (e) {
-        ipcRenderer.send($.CLOSE_MUSIC_BOX)
-      }, false)
-    </script>
+  <body class="no-select">
+    <div id="box" @mouseenter="showMainCtrl" @mouseleave="hideMainCtrl">
+      <div class="hd" style="-webkit-app-region: drag;" >
+        <div class="inline btn-wp">
+          <span class="close btn" id="J-close">x</span>
+          <span class="open btn" id="J-open" @click="openMainWindow"></span>
+        </div>
+        <div class="inline img-wp">
+          <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-1.jpg" class="m-img">
+        </div>
+        <div class="inline other-wp">
+          <div class="">
+            <div class="inline info-wp">
+              <template v-if="isShowInfo">
+                <p class="m-name ellipsis">我可能听了假的云音乐</p>
+                <p>wytiny</p>
+              </template>
+              <template v-else>
+                <div class="main-ctrl-wp">
+                  <span class="icon-prev main-ctrl"></span>
+                  <span class="icon-play main-ctrl play-ctrl"></span>
+                  <span class="icon-next main-ctrl"></span>
+                </div>
+              </template>
+            </div>
+            <div class="inline ctrl-wp">
+              <span class="icon-like"></span>
+              <span class="icon-lyric lyric-icon" @click="toggleLyric"></span>
+              <span class="icon-volume"></span>
+              <span class="icon-list" @click="toggleList"></span>
+            </div>
+          </div>
+          <div class="progress">
+
+          </div>
+        </div>
+      </div>
+      <div class="song-list scroll">
+        <p class="song-item ellipsis"
+          v-bind:class="{'active-item': currentSong.id === item.id}"
+          v-for="item in songList">
+          {{item.name}}
+        </p>
+      </div>
+    </div>
+    <script src="./renderer.js" charset="utf-8"></script>
   </body>
 </html>

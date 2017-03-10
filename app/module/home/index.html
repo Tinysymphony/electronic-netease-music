@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="./index.css">
     <title>wytiny-music</title>
     <!-- <script src="https://cdn.bootcss.com/vue/2.2.1/vue.js" charset="utf-8"></script> -->
-    <script src="./vue.min.js" charset="utf-8"></script>
+    <script src="../../assets/vue.min.js" charset="utf-8"></script>
   </head>
   <body>
     <div id="app">
@@ -178,7 +178,7 @@
         </div>
         <div class="inline f-r right-ctrl">
           <span class="icon-single icon"></span>
-          <span class="icon-lyric lyric-icon icon"></span>
+          <span class="icon-lyric lyric-icon icon" @click="toggleLyric"></span>
           <span class="icon-list list-icon icon"></span>
           <span class="num">45</span>
         </div>

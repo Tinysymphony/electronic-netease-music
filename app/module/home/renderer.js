@@ -90,6 +90,9 @@ var tinyMusic = new Vue({
         message: '非常抱歉，功能尚未开发'
       })
     },
+    toggleLyric: function () {
+      ipcRenderer.send($.TOGGLE_LYRIC)
+    },
     useMusicBox: function () {
       ipcRenderer.send($.OPEN_MUSIC_BOX)
     }

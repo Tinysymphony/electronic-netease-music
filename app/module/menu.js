@@ -132,6 +132,12 @@ if (process.env.DEV) {
     label: 'Developer',
     submenu: [{
       role: 'toggledevtools'
+    }, {
+      label: 'refreh',
+      accelerator: 'CmdOrCtrl+D',
+      click: function (item, browserWindow, e) {
+        browserWindow.reload()
+      }
     }]
   })
 }

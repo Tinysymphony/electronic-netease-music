@@ -32,9 +32,12 @@ function openLyric() {
     })
     lyricWindow.on('ready-to-show', () => {
       lyricWindow.show()
+      $main.show()
     })
   } else {
     lyricWindow.show()
+    // default focus: main
+    $main.show()
   }
 }
 
@@ -51,7 +54,8 @@ function _createLyricWindow() {
     x: (width - 800) / 2,
     y: height - 140,
     vibrancy: 'dark',
-    alwaysOnTop: true
+    alwaysOnTop: true,
+    show: false
   })
   win.loadURL(url.format({
     pathname: path.resolve(__dirname, './lyric.html'),

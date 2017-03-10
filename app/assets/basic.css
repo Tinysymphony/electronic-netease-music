@@ -69,3 +69,6 @@ input, textarea { outline: none; border: none; }
 .pointer {
   cursor: pointer;
 }
+.inline {
+  display: inline-block;
+}

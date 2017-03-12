@@ -25,6 +25,7 @@ function closeLyric() {
 function openLyric() {
   const $main = _getMainWindow();
   if (!$main) return
+  var win = BrowserWindow.getFocusedWindow()
   if (!lyricWindow) {
     lyricWindow = _createLyricWindow();
     lyricWindow.on('close', () => {
@@ -32,12 +33,12 @@ function openLyric() {
     })
     lyricWindow.on('ready-to-show', () => {
       lyricWindow.show()
-      $main.show()
+      win.show()
     })
   } else {
     lyricWindow.show()
-    // default focus: main
-    $main.show()
+    // default focus: previous board
+    win.show()
   }
 }
 

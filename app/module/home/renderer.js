@@ -1,13 +1,33 @@
 // This file is required by the index.html file and will
 // be executed in the renderer process for that window.
 // All of the Node.js APIs are available in this process.
-const notification = require('../notification')
-const {ipcRenderer} = require('electron')
-const $ = require('../IPC_CONSTANTS')
+const {remote} = require('electron');
+const notification = require('../notification');
+const $ = require('../IPC_CONSTANTS');
 
-var tinyMusic = new Vue({
+const {listMenu} = require('./menu');
+
+const $http = require('../fetch');
+
+window.$music = new Vue({
+  created: function () {
+    $http.getSongs([27808044], function (err, res, data) {
+      var data = JSON.parse(res.body);
+      var $player = document.getElementById('wt-player');
+      $player.src = data.songs[0].mp3Url;
+      // $player.play();
+    });
+    $http.getPlayList(66497320, (err, res, data) => {
+      var data = JSON.parse(res.body);
+      console.log(data.result.tracks.length);
+      this.listNum = data.result.tracks.length;
+    });
+    require('../ipcRenderer');
+  },
   el: '#app',
   data: {
+    playing: false,
+    listNum: 0,
     activePage: {
       id: 'r-fm',
       type: 'r'
@@ -91,10 +111,23 @@ var tinyMusic = new Vue({
       })
     },
     toggleLyric: function () {
-      ipcRenderer.send($.TOGGLE_LYRIC)
+      ipcRenderer.send($.TOGGLE_LYRIC);
     },
     useMusicBox: function () {
-      ipcRenderer.send($.OPEN_MUSIC_BOX)
+      ipcRenderer.send($.OPEN_MUSIC_BOX);
+    },
+    stopMusic: function () {
+      this.playing = false;
+      document.getElementById('wt-player').pause();
+    },
+    startMusic: function () {
+      this.playing = true;
+      document.getElementById('wt-player').play();
+    },
+    // 右键点击
+    listContextMenu: function (e) {
+      e.preventDefault();
+      listMenu.popup(remote.getCurrentWindow());
     }
   }
 })

@@ -65,6 +65,7 @@
               <p class="list-name">创建的歌单</p>
               <p class="list-item"
                 @click="changePage(item, 'u')"
+                @contextmenu="listContextMenu"
                 v-bind:class="{'active-item': activePage.id === item.id}"
                 v-for="item in userList">
                 <span v-bind:class="[item.icon || 'icon-list', 'item-icon']"></span>
@@ -75,6 +76,7 @@
               <p class="list-name">收藏的歌单</p>
               <p class="list-item"
                 @click="changePage(item, 'f')"
+                @contextmenu="listContextMenu"
                 v-bind:class="{'active-item': activePage.id === item.id}"
                 v-for="item in favorList"><span class="icon-list item-icon"></span>
                 {{item.name}}
@@ -98,7 +100,7 @@
             </div>
             <div class="inline current-wp">
               <img src="http://7xjgb0.com1.z0.glb.clouddn.com/wymusic-1.jpg" class="p-img current-img">
-              <span class="current-status icon-stop inline"></span>
+              <span class="current-status icon-stop inline" @click="stopMusic"></span>
             </div>
             <div class="main-play-ctrl">
               <span class="icon-like click" @click="unDeveloped"></span>
@@ -160,8 +162,8 @@
         <div class="inline ctrl-btn prev-btn" @click="unDeveloped">
           <span class="icon-prev"></span>
         </div>
-        <div class="inline ctrl-btn play-btn" @click="unDeveloped">
-          <span class="icon-stop"></span>
+        <div class="inline ctrl-btn play-btn" @click="playing ? stopMusic() : startMusic()">
+          <span v-bind:class="{'icon-play': !playing, 'icon-stop': playing}"></span>
         </div>
         <div class="inline ctrl-btn next-btn" @click="unDeveloped">
           <span class="icon-next"></span>
@@ -180,9 +182,12 @@
           <span class="icon-single icon"></span>
           <span class="icon-lyric lyric-icon icon" @click="toggleLyric"></span>
           <span class="icon-list list-icon icon"></span>
-          <span class="num">45</span>
+          <span class="num">{{listNum}}</span>
         </div>
       </footer>
+      <audio controls="controls" class="none" id="wt-player">
+        <!-- <source src="" type="audio/mp3" id="wt-player-src"> -->
+      </audio>
     </div>
     <script>
       require('./renderer.js')

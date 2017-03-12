@@ -2,30 +2,40 @@
  * Created by TinySymphony on 2017-03-07.
  */
 
-// Control Module
-function _togglePlayStatus() {
+// Control Module (Main Process)
+const {ipcMain} = require('electron')
+const $ = require('../IPC_CONSTANTS')
+
+function togglePlayStatus() {
+  var $main = _getMainWindow()
+  if(!$main) return;
+  $main.webContents.send($.TOGGLE_MUSIC)
 }
 
-function _nextSong() {
+function nextSong() {
 }
 
-function _prevSong() {
+function prevSong() {
 }
 
-function _volumeUp() {
+function volumeUp() {
 }
 
-function _volumeDown() {
+function volumeDown() {
 }
 
-function _addFavor() {
+function addFavor() {
+}
+
+function _getMainWindow() {
+  return process.$mainWindow || null;
 }
 
 module.exports = {
-  togglePlayStatus: _togglePlayStatus,
-  nextSong: _nextSong,
-  prevSong: _prevSong,
-  volumeUp: _volumeUp,
-  volumeDown: _volumeDown,
-  addFavor: _addFavor
+  togglePlayStatus,
+  nextSong,
+  prevSong,
+  volumeUp,
+  volumeDown,
+  addFavor
 }

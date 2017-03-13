@@ -11,6 +11,7 @@ const path = require('path')
 const url = require('url')
 const notification = require('./app/module/notification')
 
+console.log('\x1b[36m', `[TinyMusic $main] starts at port: ${process.pid}` ,'\x1b[0m');
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow

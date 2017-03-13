@@ -72,3 +72,9 @@ input, textarea { outline: none; border: none; }
 .inline {
   display: inline-block;
 }
+[v-cloak] {
+  display: none;
+}
+.mono {
+  font-family: Inconsolata, Monaco, Consolas, 'Courier New', Courier, Verdana;
+}

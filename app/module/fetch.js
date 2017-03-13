@@ -3,6 +3,7 @@
  */
 
 const request = require('request');
+let jar = request.jar();
 
 const origin = 'http://music.163.com';
 const headers = {
@@ -24,7 +25,8 @@ function getSongs(idList, callback) {
   request({
     method: 'GET',
     url: `${origin}/api/song/detail?ids=%5B${idList.join(',')}%5d`,
-    headers
+    headers,
+    jar
   }, callback);
 }
 
@@ -32,7 +34,8 @@ function getLyric(options, callback) {
   request({
     method: 'GET',
     url: `${origin}/api/song/lyric?lv=${options.lv || -1}&id=${options.id}`,
-    headers
+    headers,
+    jar
   }, callback);
 }
 
@@ -40,7 +43,8 @@ function getPlayList(id, callback) {
   request({
     method: 'GET',
     url: `${origin}/api/playlist/detail?id=${id}`,
-    headers
+    headers,
+    jar
   }, callback);
 }
 

@@ -453,6 +453,7 @@
   background: rgba(255, 255, 255, 0.48);
   line-height: 65px;
   padding-right: 15px;
+  cursor: default;
 }
 
 .ctrl-btn {
@@ -570,4 +571,104 @@
   line-height: 14px;
   color: #eee;
   vertical-align: middle;
+}
+
+.song-pop-list {
+  cursor: default;
+  position: absolute;;
+  top: -451px;
+  right: 0;
+  height: 450px;
+  width: 560px;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+  overflow: hidden;
+  box-shadow: -2px -2px 6px rgba(0, 0, 0, .34);
+  font-size: 12px;
+}
+
+.pop-list-hd {
+  height: 40px;
+  line-height: 40px;
+  text-align: center;
+  background: linear-gradient(180deg, rgba(230,230,230,.94), rgba(230,230,230,.82));
+}
+
+.pop-list-ctrl {
+  height: 30px;
+  line-height: 30px;
+  border-top: 1px solid #ccc;
+  border-bottom: 1px solid #ccc;
+  background: #fcfcfc;
+  color: #999;
+  padding-left: 20px;
+}
+
+.pop-list-hd-btn {
+  padding: 2px 38px;
+  color: #666;
+  box-shadow: 0 0 1px rgba(0,0,0,.3);
+}
+
+.btn-p-list {
+  color: #fff;
+  background: #666;
+  border-radius: 2px 0   0 2px;
+}
+
+.btn-h-list {
+  background-color: #fff;
+  border-radius: 0 2px 2px 0;
+}
+
+.pop-list-close-btn {
+  display: inline-block;
+  color: #888;
+  font-size: 16px;
+  margin-right: 10px;
+}
+
+.pop-list-songs {
+  overflow: auto;
+  width: 100%;
+  height: 390px;
+  background: #fcfcfc;
+  padding-bottom: 60px;
+  /*background-image: linear-gradient(180deg, #f4f4f4, #f4f4f4 50%, #fcfcfc 0);
+  background-size: 60px 60px;
+  background-repeat: repeat;*/
+}
+
+.song-item {
+  height: 30px;
+  line-height: 30px;
+  padding-left: 20px;
+  color: #444;
+  background: #fcfcfc;
+}
+.song-item:nth-child(odd) {
+  background: #f4f4f4;
+}
+.active-song-item {
+  position: relative;
+}
+.active-song-item::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 3px;
+  height: 20px;
+  background: #d12323;
+}
+.p-song-name {
+  width: 300px;
+}
+.p-song-artists {
+  width: 140px;
+}
+.p-song-time {
+  width: 80px;
+  padding-right: 20px;
+  text-align: right;
 }

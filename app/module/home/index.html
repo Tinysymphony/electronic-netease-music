@@ -48,7 +48,7 @@
                 v-bind:class="{'active-item': activePage.id === item.id}"
                 v-for="item in recommendList">
                 <span v-bind:class="[item.icon, 'item-icon']"></span>
-                {{item.name}}
+                <span v-text="item.name"></span>
               </p>
             </section>
             <section class="list-sec">
@@ -58,7 +58,7 @@
                 v-bind:class="{'active-item': activePage.id === item.id}"
                 v-for="item in myMusic">
                 <span v-bind:class="[item.icon, 'item-icon']"></span>
-                {{item.name}}
+                <span v-text="item.name"></span>
               </p>
             </section>
             <section class="list-sec">
@@ -69,7 +69,7 @@
                 v-bind:class="{'active-item': activePage.id === item.id}"
                 v-for="item in userList">
                 <span v-bind:class="[item.icon || 'icon-list', 'item-icon']"></span>
-                {{item.name}}
+                <span v-text="item.name"></span>
               </p>
             </section>
             <section class="list-sec">
@@ -79,7 +79,7 @@
                 @contextmenu="listContextMenu"
                 v-bind:class="{'active-item': activePage.id === item.id}"
                 v-for="item in favorList"><span class="icon-list item-icon"></span>
-                {{item.name}}
+                <span v-text="item.name"></span>
               </p>
             </section>
           </div>
@@ -159,6 +159,25 @@
         </div>
       </div>
       <footer class="fix ft no-select" id="J-footer">
+        <div class="song-pop-list" v-if="showPopupSongList" v-cloak>
+          <div class="pop-list-hd">
+            <span class="pop-list-hd-btn btn-p-list">播放列表</span><span class="pop-list-hd-btn btn-h-list">历史记录</span>
+            <span class="pop-list-close-btn f-r" @click="closePopupSongList">x</span>
+          </div>
+          <div class="pop-list-ctrl">
+            <span v-text="'总' + listNum + '首'"></span>
+          </div>
+          <div class="pop-list-songs">
+            <p class="song-item ellipsis"
+              v-bind:class="{'active-song-item': currentSong.id === item.id}"
+              v-for="item in songList"
+              @contextmenu="songContextMenu(item)">
+              <span v-text="item.name" class="inline ellipsis p-song-name"></span>
+              <span v-text="getArtistsString(item)" class="inline ellipsis p-song-artists"></span>
+              <span v-text="getDuration(item)" class="inline ellipsis p-song-time mono"></span>
+            </p>
+          </div>
+        </div>
         <div class="inline ctrl-btn prev-btn" @click="unDeveloped">
           <span class="icon-prev"></span>
         </div>
@@ -181,12 +200,12 @@
         <div class="inline f-r right-ctrl">
           <span class="icon-single icon"></span>
           <span class="icon-lyric lyric-icon icon" @click="toggleLyric"></span>
-          <span class="icon-list list-icon icon"></span>
-          <span class="num">{{listNum}}</span>
+          <span class="icon-list list-icon icon" @click="togglePopupSongList"></span>
+          <span class="num" @click="togglePopupSongList" v-text="listNum"></span>
         </div>
       </footer>
       <audio controls="controls" class="none" id="wt-player">
-        <!-- <source src="" type="audio/mp3" id="wt-player-src"> -->
+        <source src="" type="audio/mp3" id="wt-player-src">
       </audio>
     </div>
     <script>

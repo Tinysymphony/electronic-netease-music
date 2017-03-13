@@ -5,7 +5,7 @@ const {remote, ipcRenderer} = require('electron');
 const notification = require('../notification');
 const $ = require('../IPC_CONSTANTS');
 
-const {listMenu} = require('./menu');
+const {listMenu, createSongMenu} = require('./menu');
 
 const $http = require('../fetch');
 
@@ -19,13 +19,19 @@ window.$music = new Vue({
     });
     $http.getPlayList(66497320, (err, res, data) => {
       var data = JSON.parse(res.body);
-      console.log(data.result.tracks.length);
       this.listNum = data.result.tracks.length;
+      this.songList = data.result.tracks;
+      console.log(this.songList);
     });
     require('../ipcRenderer');
   },
   el: '#app',
   data: {
+    currentSong: {
+      id: 25788001
+    },
+    songList: [],
+    showPopupSongList: false,
     playing: false,
     listNum: 0,
     activePage: {
@@ -128,6 +134,33 @@ window.$music = new Vue({
     listContextMenu: function (e) {
       e.preventDefault();
       listMenu.popup(remote.getCurrentWindow());
+    },
+    songContextMenu: function (item) {
+      var menu = createSongMenu(item);
+      menu.popup(remote.getCurrentWindow());
+    },
+    togglePopupSongList: function (e) {
+      this.showPopupSongList = !this.showPopupSongList;
+    },
+    closePopupSongList: function (e) {
+      this.showPopupSongList = false;
+    },
+    getArtistsString: function (item) {
+      return item.artists.map(item => item.name).join('，');
+    },
+    getDuration: function (item) {
+      var seconds = (item.duration / 1000).toFixed(0),
+        sec, min;
+      if (seconds < 3600) {
+        sec = seconds % 60;
+        min = (seconds / 60).toFixed(0);
+        return (min < 10 ? 0 + min : min) + ':' + (sec < 10 ? '0' + sec : sec);
+      } else {
+        var h = (seconds / 3600).toFixed(0);
+        sec = (seconds - h * 3600) % 60;
+        min = ((seconds - h * 3600) / 60).toFixed(0);
+        return (h < 10 ? '0' + h : h) + ':' + (min < 10 ? '0' + min : min) + ':' + (sec < 10 ? '0' + sec : sec);
+      }
     }
   }
 })

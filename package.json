@@ -1,28 +1,30 @@
 {
-  "name": "Electronic-Netease-Music",
-  "version": "0.0.1",
-  "description": "Netease Music built by Electron",
-  "main": "app.js",
+  "name": "electronic-netease-music",
+  "version": "0.0.0",
+  "description": "Netease music application built by electron",
   "scripts": {
-    "start": "DEV=true electron .",
-    "clean": "rm -rf ./dist",
-    "clean:osx": "rm -rf ./dist/osx",
-    "pack:osx": "electron-packager . TinyMusic --arch=x64 --platform=darwin --out=./dist/osx --overwrite --icon=./music.icns",
-    "build:osx": "npm run pack:osx && build dist/osx/TinyMusic-darwin-x64/TinyMusic.app --platform=mac"
+    "build": "npm run clean && npm run pack && build",
+    "build:dir": "npm run pack && build --dir",
+    "dev": "node tasks/runner.js",
+    "lint": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter app",
+    "lint:fix": "eslint --ext .js,.vue -f ./node_modules/eslint-friendly-formatter --fix app",
+    "pack": "npm run pack:main && npm run pack:renderer",
+    "pack:main": "cross-env NODE_ENV=production webpack -p --progress --colors --config webpack.main.config.js",
+    "pack:renderer": "cross-env NODE_ENV=production webpack -p --progress --colors --config webpack.renderer.config.js",
+    "postinstall": "npm run lint:fix && cd app && npm install",
+    "clean": "rm -rf ./app/dist && rm -rf ./dist"
   },
   "build": {
-    "asar": true,
-    "icon": "music.icns",
-    "appId": "com.wytiny.tinymusic",
+    "productName": "Electronic-Netease-Music",
+    "appId": "com.wytiny.electronic-netease-music",
+    "category": "public.app-category.tools",
     "dmg": {
-      "background": "app/assets/img/sea.png",
-      "title": "wytiny云音乐",
+      "background": "app/icons/bg.png",
       "contents": [
         {
           "x": 90,
           "y": 100
-        },
-        {
+        }, {
           "x": 280,
           "y": 100,
           "type": "link",
@@ -33,25 +35,65 @@
         "width": 370,
         "height": 220
       }
+    },
+    "files": [
+      "dist/",
+      "node_modules/",
+      "package.json"
+    ],
+    "mac": {
+      "icon": "app/icons/icon.icns"
+    },
+    "win": {
+      "icon": "app/icons/icon.ico"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ]
     }
   },
-  "repository": "https://github.com/Tinysymphony/electronic-netease-music",
-  "keywords": [
-    "Electron",
-    "Netease",
-    "music",
-    "desktop",
-    "demo"
-  ],
-  "author": "wytiny",
+  "author": "TinySymphony <zjutiny@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^1.4.1",
-    "electron-builder": "^15.1.1",
-    "electron-packager": "^8.5.2"
+    "babel-core": "^6.8.0",
+    "babel-loader": "^6.2.4",
+    "babel-plugin-transform-runtime": "^6.8.0",
+    "babel-preset-es2015": "^6.6.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.18.0",
+    "babel-runtime": "^6.6.1",
+    "cross-env": "^3.1.4",
+    "css-loader": "^0.26.1",
+    "del": "^2.2.1",
+    "devtron": "^1.1.0",
+    "electron": "^1.3.1",
+    "electron-debug": "^1.1.0",
+    "electron-devtools-installer": "^2.0.1",
+    "electron-builder": "^11.4.4",
+    "electron-rebuild": "^1.1.3",
+    "babel-eslint": "^7.0.0",
+    "eslint": "^3.13.1",
+    "eslint-friendly-formatter": "^2.0.5",
+    "eslint-loader": "^1.3.0",
+    "eslint-plugin-html": "^2.0.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.0",
+    "eslint-plugin-standard": "^2.0.1",
+    "extract-text-webpack-plugin": "^2.0.0-beta.4",
+    "file-loader": "^0.9.0",
+    "html-webpack-plugin": "^2.16.1",
+    "json-loader": "^0.5.4",
+    "style-loader": "^0.13.1",
+    "tree-kill": "^1.1.0",
+    "url-loader": "^0.5.7",
+    "vue-hot-reload-api": "^2.0.7",
+    "vue-html-loader": "^1.2.2",
+    "vue-loader": "^10.0.2",
+    "vue-style-loader": "^1.0.0",
+    "vue-template-compiler": "^2.1.10",
+    "webpack": "^2.2.1",
+    "webpack-dev-server": "^2.3.0"
   },
-  "dependencies": {
-    "node-notifier": "^5.0.2",
-    "request": "^2.81.0"
-  }
+  "dependencies": {}
 }

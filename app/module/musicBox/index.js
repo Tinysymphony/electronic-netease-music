@@ -61,10 +61,10 @@ function _createMusicBox() {
   var win = new BrowserWindow({
     width: SIZE.w,
     height: SIZE.h,
-    minHeight: SIZE.h,
-    maxHeight: SIZE.h,
-    minWidth: SIZE.w,
-    maxWidth: SIZE.w,
+    // minHeight: SIZE.h,
+    // maxHeight: SIZE.h,
+    // minWidth: SIZE.w,
+    // maxWidth: SIZE.w,
     frame: false,
     show: false
   })

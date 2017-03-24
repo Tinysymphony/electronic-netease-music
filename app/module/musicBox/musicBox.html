@@ -48,7 +48,8 @@
       <div class="song-list scroll">
         <p class="song-item ellipsis"
           v-bind:class="{'active-item': currentSong.id === item.id}"
-          v-for="item in songList">
+          v-for="item in songList"
+          @contextmenu="openSongContextMenu">
           {{item.name}}
         </p>
       </div>

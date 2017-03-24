@@ -1,5 +1,32 @@
-const {ipcRenderer} = require('electron')
+const {ipcRenderer, remote} = require('electron')
 const $ = require('../IPC_CONSTANTS')
+
+const {
+  Menu,
+  MenuItem
+} = remote;
+
+const separator = {
+  type: 'separator'
+}
+
+var listMenuList = [{
+  label: '播放'
+}, {
+  label: '添加到歌单',
+  submenu: []
+}, separator, {
+  label: '分享...'
+}, {
+  label: '复制链接'
+}, {
+  label: '下载'
+}, separator, {
+  label: '从列表中删除'
+}]
+
+var menu = Menu.buildFromTemplate(listMenuList)
+
 var musicBox = new Vue({
   el: '#box',
   data: {
@@ -48,6 +75,10 @@ var musicBox = new Vue({
     },
     toggleLyric: function () {
       ipcRenderer.send($.TOGGLE_LYRIC)
+    },
+    openSongContextMenu: function (e) {
+      e.preventDefault()
+      menu.popup(remote.getCurrentWindow())
     }
   }
 })

@@ -187,9 +187,12 @@
         <div class="inline ctrl-btn next-btn" @click="unDeveloped">
           <span class="icon-next"></span>
         </div>
-        <div class="inline process-bar">
-          <div class="inline loaded"></div>
-          <span class="dot">·</span>
+        <div class="inline progress-bar">
+          <div class="inline loaded" v-bind:style="{width: progressBar.currentLeft + 'px'}"></div>
+          <span class="dot"
+            v-bind:style="{left: progressBar.currentLeft + 'px'}"
+            v-bind:class="{'focus-dot': progressBar.focus}"
+            @mousedown="moveStart">·</span>
         </div>
         <span class="ft-time">2:23 / 4:12</span>
         <div class="inline volume-sec">

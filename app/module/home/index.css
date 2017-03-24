@@ -124,6 +124,9 @@
   padding-right: 20px;
 }
 
+/*hd ends*/
+
+
 .main {
   height: calc(100vh - 65px - 60px);
   overflow: hidden;
@@ -474,7 +477,7 @@
   line-height: 35px;
 }
 
-.process-bar {
+.progress-bar {
   position: relative;
   width: calc(100vw - 600px);
   margin: 0 20px 0 36px;
@@ -488,7 +491,7 @@
   position: absolute;
   left: 0;
   top: 0;
-  width: 240px;
+  width: 0;
   height: 4px;
   border-radius: 2px;
   background: #d12323;
@@ -501,13 +504,17 @@
   background: #fff;
   border-radius: 8px;
   position: absolute;
-  left: 240px;
+  left: 0;
   top: -6px;
   box-shadow: 0 0 1px #666;
   text-align: center;
   color: #d12323;
   line-height: 17px;
   font-size: 24px;
+}
+
+.focus-dot {
+  background: #f0f0f0;
 }
 
 .volume-sec {

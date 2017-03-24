@@ -21,12 +21,21 @@ window.$music = new Vue({
       var data = JSON.parse(res.body);
       this.listNum = data.result.tracks.length;
       this.songList = data.result.tracks;
-      console.log(this.songList);
     });
     require('../ipcRenderer');
+    window.addEventListener('mousemove', this.move);
+    window.addEventListener('mouseup', this.moveEnd);
   },
   el: '#app',
   data: {
+    progressBar: {
+      focus: false,
+      currentLeft: 0,
+      posX: 0
+    },
+    currentLeft: 0,
+    currentTime: 0,
+    // test ends
     currentSong: {
       id: 25788001
     },
@@ -161,6 +170,26 @@ window.$music = new Vue({
         min = ((seconds - h * 3600) / 60).toFixed(0);
         return (h < 10 ? '0' + h : h) + ':' + (min < 10 ? '0' + min : min) + ':' + (sec < 10 ? '0' + sec : sec);
       }
+    },
+    // test
+    moveStart: function (e) {
+      this.progressBar.focus = true;
+      this.progressBar.posX = e.clientX;
+    },
+    move: function (e) {
+      if (!this.progressBar.focus) return;
+      // validate
+      var pos = e.clientX - 214;
+      if (pos < - 8) pos = -8;
+      var el = document.querySelector('.progress-bar');
+      var width = parseInt(window.getComputedStyle(el, null).getPropertyValue('width'), 10);
+      if (pos > width - 8) pos = width - 8;
+      this.progressBar.currentLeft = pos;
+    },
+    moveEnd: function (e) {
+      this.progressBar.focus = false;
     }
+  },
+  components: {
   }
 })

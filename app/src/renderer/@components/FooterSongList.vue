@@ -12,7 +12,7 @@
         v-bind:class="{'active-song-item': currentSong.id === item.id, 'focus-song-item': focusedList.indexOf(index) >= 0}"
         v-for="(item, index) in tracks"
         @click="focusItem(item, index)"
-        @contextmenu="songContextMenu(item)">
+        @contextmenu="songContextMenu(item, index)">
         <span v-text="item.name" class="inline ellipsis p-song-name"></span>
         <span v-text="getArtistsString(item)" class="inline ellipsis p-song-artists"></span>
         <span v-text="getDuration(item)" class="inline ellipsis p-song-time mono"></span>
@@ -23,6 +23,7 @@
 
 <script>
 import { mapActions } from 'vuex'
+import Vue from 'vue'
 export default {
   data () {
     return {
@@ -62,10 +63,13 @@ export default {
         this.lastAdded = index
       }
     },
-    songContextMenu (item) {
-      var menu = this.createSongMenu(item)
-      menu.popup(this.$electron.remote.getCurrentWindow())
-      this.focusSong = item;
+    songContextMenu (item, index) {
+      this.focusItem(item, index);
+      // this.$nextTick / requestAnimationFrame / Promise.resolve().then() all failed
+      setTimeout(() => {
+        var menu = this.createSongMenu(item)
+        menu.popup(this.$electron.remote.getCurrentWindow())
+      })
     },
     getArtistsString (item) {
       return item.artists.map(item => item.name).join('，')

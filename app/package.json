@@ -1,16 +1,18 @@
 {
   "name": "electronic-netease-music",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Netease music application built by electron",
   "main": "./dist/main.js",
   "dependencies": {
     "extend": "^3.0.0",
     "node-notifier": "^5.0.2",
+    "request": "^2.81.0",
     "vue": "^2.1.10",
     "vue-resource": "^1.0.3",
     "vue-router": "^2.1.2",
     "vuex": "^2.1.1"
   },
   "devDependencies": {},
-  "author": "Tinysymphony <zjutiny@gmail.com>"
+  "author": "Tinysymphony <zjutiny@gmail.com>",
+  "license": "MIT"
 }

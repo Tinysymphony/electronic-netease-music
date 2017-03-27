@@ -5,12 +5,13 @@
       <span class="pop-list-close-btn f-r" @click="closeCallback">x</span>
     </div>
     <div class="pop-list-ctrl">
-      <span v-text="'总' + songList.length + '首'"></span>
+      <span v-text="'总' + tracks.length + '首'"></span>
     </div>
     <div class="pop-list-songs">
       <p class="song-item ellipsis"
-        v-bind:class="{'active-song-item': currentSong.id === item.id}"
-        v-for="item in songList"
+        v-bind:class="{'active-song-item': currentSong.id === item.id, 'focus-song-item': focusedList.indexOf(index) >= 0}"
+        v-for="(item, index) in tracks"
+        @click="focusItem(item, index)"
         @contextmenu="songContextMenu(item)">
         <span v-text="item.name" class="inline ellipsis p-song-name"></span>
         <span v-text="getArtistsString(item)" class="inline ellipsis p-song-artists"></span>
@@ -21,10 +22,15 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
-      songList: []
+      currentSong: {
+        id: 123
+      },
+      focusedList: [],
+      lastAdded: 0
     }
   },
   props: {
@@ -33,13 +39,33 @@ export default {
       default: () => {}
     }
   },
-  computed: {},
-  mounted () {
+  computed: {
+    tracks() {
+      return this.$store.state.songList.songList.tracks || []
+    }
   },
   methods: {
+    ...mapActions([
+      'rmListSongs'
+    ]),
+    // TO_MIXIN
+    focusItem (item, index) {
+      if (window.$holdKeys['command']) {
+        this.focusedList.push(index)
+        this.lastAdded = index
+      } else if (window.$holdKeys['shift']) {
+        let distance = Math.abs(index - this.lastAdded) + 1
+        let start = Math.min(index, this.lastAdded)
+        this.focusedList = (new Array(distance)).fill(0).map(item => start++)
+      } else {
+        this.focusedList = [index]
+        this.lastAdded = index
+      }
+    },
     songContextMenu (item) {
       var menu = this.createSongMenu(item)
       menu.popup(this.$electron.remote.getCurrentWindow())
+      this.focusSong = item;
     },
     getArtistsString (item) {
       return item.artists.map(item => item.name).join('，')
@@ -59,30 +85,49 @@ export default {
         return (h < 10 ? '0' + h : h) + ':' + (min < 10 ? '0' + min : min) + ':' + (sec < 10 ? '0' + sec : sec)
       }
     },
+    removeBySelectedIndices() {
+      this.rmListSongs({
+        indices: this.focusedList
+      })
+      this.focusedList = []
+    },
     createSongMenu(item) {
       const separator = {
         type: 'separator'
       }
-
-      return this.$electron.remote.Menu.buildFromTemplate([{
-        label: '播放'
-      }, separator, {
-        label: '专辑：' + item.album.name || '...'
-      }, {
-        label: '歌手：' + item.artists[0].name
-      }, {
-        label: '来自：...'
-      }, separator, {
-        label: '收藏'
-      }, {
-        label: '分享...'
-      }, {
-        label: '复制链接'
-      }, {
-        label: '下载'
-      }, separator, {
-        label: '从列表中删除'
-      }]);
+      if (this.focusedList.length > 1) {
+        return this.$electron.remote.Menu.buildFromTemplate([{
+          label: '播放'
+        }, separator, {
+          label: '收藏'
+        }, {
+          label: '下载'
+        }, separator, {
+          label: '从列表中删除',
+          click: this.removeBySelectedIndices
+        }]);
+      } else {
+        return this.$electron.remote.Menu.buildFromTemplate([{
+          label: '播放'
+        }, separator, {
+          label: '专辑：' + item.album.name || '...'
+        }, {
+          label: '歌手：' + item.artists[0].name
+        }, {
+          label: '来自：...'
+        }, separator, {
+          label: '收藏'
+        }, {
+          label: '分享...'
+        }, {
+          label: '复制链接'
+        }, {
+          label: '下载'
+        }, separator, {
+          label: '从列表中删除',
+          click: this.removeBySelectedIndices
+        }]);
+      }
     }
   },
   components: {}
@@ -177,6 +222,9 @@ export default {
   width: 3px;
   height: 20px;
   background: #d12323;
+}
+.song-item.focus-song-item {
+  background: #dedede;
 }
 .p-song-name {
   width: 300px;

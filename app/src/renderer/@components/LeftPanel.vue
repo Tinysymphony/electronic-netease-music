@@ -138,7 +138,6 @@ export default {
       this.activePage.type = type
     },
     listContextMenu (e) {
-      e.preventDefault();
       const separator = {
         type: 'separator'
       };
@@ -175,7 +174,6 @@ export default {
 
 .items-pad {
   height: calc(100vh - 65px - 60px - 86px);
-  overflow: hidden;
 }
 
 .playing-pad {

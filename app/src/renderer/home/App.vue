@@ -22,6 +22,8 @@
       MainFooter,
       MainBoard,
       LeftPanel
+    },
+    created() {
     }
   }
 </script>

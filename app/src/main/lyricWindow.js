@@ -7,6 +7,9 @@ import url from 'url'
 import path from 'path'
 
 let lyricWindow
+const winURL = process.env.NODE_ENV === 'development'
+  ? `file://${path.resolve(__dirname, '../renderer/lyrics/index.html')}`
+  : `file://${__dirname}/home.html`
 
 function toggleLyric() {
   if (!lyricWindow || lyricWindow && !lyricWindow.isVisible()) {
@@ -58,11 +61,7 @@ function _createLyricWindow() {
     alwaysOnTop: true,
     show: false
   })
-  win.loadURL(url.format({
-    pathname: path.resolve(__dirname, './lyric.html'),
-    protocol: 'file:',
-    slashes: true
-  }))
+  win.loadURL(winURL)
   return win
 }
 

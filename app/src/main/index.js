@@ -1,7 +1,7 @@
 'use strict'
 
 import { app, BrowserWindow } from 'electron'
-import notification from './notification'
+import notification from '../notification'
 
 let mainWindow
 const winURL = process.env.NODE_ENV === 'development'

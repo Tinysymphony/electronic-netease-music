@@ -61,9 +61,8 @@ let mainConfig = {
   resolve: {
     alias: {
       '@main': path.join(__dirname, 'app/src/main'),
-      '@src': path.join(__dirname, 'app/src/src'),
-      '@renderer': path.join(__dirname, 'app/src/renderer'),
-      '@app': path.join(__dirname, 'app/src')
+      '@src': path.join(__dirname, 'app/src'),
+      '@renderer': path.join(__dirname, 'app/src/renderer')
     },
     extensions: ['.js', '.json', '.node'],
     modules: [

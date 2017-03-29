@@ -8,8 +8,8 @@ import path from 'path'
 
 let lyricWindow
 const winURL = process.env.NODE_ENV === 'development'
-  ? `file://${path.resolve(__dirname, '../renderer/lyrics/index.html')}`
-  : `file://${__dirname}/home.html`
+  ? `http://localhost:${require('../../../config').port}/lyrics.html`
+  : `file://${__dirname}/lyrics.html`
 
 function toggleLyric() {
   if (!lyricWindow || lyricWindow && !lyricWindow.isVisible()) {

@@ -45,14 +45,6 @@
     ],
     "mac": {
       "icon": "app/icons/icon.icns"
-    },
-    "win": {
-      "icon": "app/icons/icon.ico"
-    },
-    "linux": {
-      "target": [
-        "AppImage"
-      ]
     }
   },
   "author": "TinySymphony <zjutiny@gmail.com>",

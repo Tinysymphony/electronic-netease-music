@@ -17,7 +17,7 @@ let htmlPlugins = []
 files.forEach(item => {
   entry[item] = path.join(__dirname, `app/src/renderer/${item}/main.js`)
   htmlPlugins.push(new HtmlWebpackPlugin({
-    filename: `${item === 'home' ? 'index' : item}.html`,
+    filename: `${item}.html`,
     template: `./app/src/renderer/${item}/index.ejs`,
     chunks: [`${item}`],
     appModules: process.env.NODE_ENV !== 'production'

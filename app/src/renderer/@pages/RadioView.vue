@@ -66,6 +66,7 @@
 </template>
 
 <script>
+import N from '@src/notification'
 export default {
   data () {
     return {}
@@ -74,11 +75,11 @@ export default {
   mounted () {},
   methods: {
     unDeveloped () {
-      this.$notification.notify({
+      this.$electron.ipcRenderer.send(this.$ipc.NOTIFY, {
         wait: false,
         title: 'Warning',
         message: '非常抱歉，功能尚未开发'
-      })
+      });
     },
     stopMusic () {
       this.playing = false;

@@ -127,7 +127,8 @@ let menuList = [{
     click: toggleLyric
   }]
 }]
-if (process.env.DEV) {
+
+if (process.env.NODE_ENV === 'development') {
   menuList.push({
     label: 'Developer',
     submenu: [{
@@ -141,6 +142,7 @@ if (process.env.DEV) {
     }]
   })
 }
+
 const menu = Menu.buildFromTemplate(menuList)
 // add menu after application is ready
 Menu.setApplicationMenu(menu)

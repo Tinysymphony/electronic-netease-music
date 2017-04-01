@@ -7,6 +7,8 @@ import $ipc from '@src/IPC_CONSTANTS'
 import App from './App'
 import routes from './routes'
 
+window.$n = notification;
+
 Vue.use({
   // custom hook
   install(Vue) {

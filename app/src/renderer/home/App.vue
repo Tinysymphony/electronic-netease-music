@@ -6,6 +6,7 @@
       <router-view slot="right"></router-view>
     </main-board>
     <main-footer/>
+    <player/>
   </div>
 </template>
 
@@ -15,13 +16,15 @@
   import MainFooter from '@components/MainFooter'
   import MainBoard from '@components/MainBoard'
   import LeftPanel from '@components/LeftPanel'
+  import Player from '@components/Player'
   export default {
     store,
     components: {
       MainHeader,
       MainFooter,
       MainBoard,
-      LeftPanel
+      LeftPanel,
+      Player
     },
     created() {
     }

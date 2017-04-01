@@ -12,7 +12,7 @@
         v-bind:class="{'active-song-item': currentSong.id === item.id, 'focus-song-item': focusedList.indexOf(index) >= 0}"
         v-for="(item, index) in tracks"
         @click="focusItem(item, index)"
-        @contextmenu="songContextMenu(item, index)">
+        @contextmenu="songContextMenu(item, index, $event)">
         <span v-text="item.name" class="inline ellipsis p-song-name"></span>
         <span v-text="getArtistsString(item)" class="inline ellipsis p-song-artists"></span>
         <span v-text="getDuration(item)" class="inline ellipsis p-song-time mono"></span>
@@ -58,18 +58,18 @@ export default {
         let distance = Math.abs(index - this.lastAdded) + 1
         let start = Math.min(index, this.lastAdded)
         this.focusedList = (new Array(distance)).fill(0).map(item => start++)
-      } else {
+      } else if (this.focusedList.findIndex(a => a === index) < 0) {
         this.focusedList = [index]
         this.lastAdded = index
       }
     },
-    songContextMenu (item, index) {
-      this.focusItem(item, index);
+    songContextMenu (item, index, e) {
+      this.focusItem(item, index)
       // this.$nextTick / requestAnimationFrame / Promise.resolve().then() all failed
       setTimeout(() => {
         var menu = this.createSongMenu(item)
         menu.popup(this.$electron.remote.getCurrentWindow())
-      })
+      });
     },
     getArtistsString (item) {
       return item.artists.map(item => item.name).join('，')

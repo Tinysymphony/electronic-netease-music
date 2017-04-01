@@ -4,8 +4,8 @@ import { app, BrowserWindow } from 'electron'
 import notification from '../notification'
 
 let mainWindow
-const winURL = process.env.NODE_ENV === 'development'
-  ? `http://localhost:${require('../../../config').port}`
+const winURL = process.env.NODE_ENV !== 'production'
+  ? `http://localhost:${require('../../../config').port}/home.html`
   : `file://${__dirname}/home.html`
 
 console.log('\x1b[36m', `[TinyMusic $main] starts with pid: ${process.pid}`, '\x1b[0m')
@@ -44,6 +44,7 @@ function createWindow () {
   // set tray icon
   // require('./tray')
   // eslint-disable-next-line no-console
+  remark()
 }
 
 app.on('ready', createWindow)
@@ -61,3 +62,26 @@ app.on('activate', () => {
     mainWindow.show()
   }
 })
+
+require('./ipcMain')
+
+function remark() {
+  const YES = '当然有'
+  notification.notify({
+    title: '欢迎使用',
+    message: '对于wytiny云音乐的新版本有什么意见？',
+    closeLabel: '没有喔',
+    actions: YES
+  }, function (err, res, meta) {
+    if(err) throw(err)
+    if(meta.activationValue !== YES) return
+    notification.notify({
+      title: '意见反馈',
+      message: '请在下面填写您的意见，我们会及时跟进~',
+      reply: true
+    }, function (err, res, meta) {
+      if(err) throw(err)
+      console.log(meta);
+    })
+  });
+}

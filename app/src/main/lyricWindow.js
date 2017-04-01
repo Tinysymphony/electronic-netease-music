@@ -5,6 +5,7 @@ import electron from 'electron'
 const {app, BrowserWindow} = electron
 import url from 'url'
 import path from 'path'
+import extend from 'extend'
 
 let lyricWindow
 const winURL = process.env.NODE_ENV === 'development'
@@ -48,19 +49,24 @@ function openLyric() {
 function _createLyricWindow() {
   // screen can only be used after app is ready
   const {width, height} = electron.screen.getPrimaryDisplay().workAreaSize
-  var win = new BrowserWindow({
+  let winConfig = {
     width: 800,
     height: 70,
-    minHeight: 70,
-    maxHeight: 70,
-    minWidth: 480,
-    frame: false,
     x: (width - 800) / 2,
     y: height - 140,
     vibrancy: 'dark',
     alwaysOnTop: true,
+    frame: false,
     show: false
-  })
+  }
+  if (process.env.NODE_ENV === 'production') {
+    winConfig = extend(winConfig, {
+      minHeight: 70,
+      maxHeight: 70,
+      minWidth: 480
+    })
+  }
+  let win = new BrowserWindow(winConfig)
   win.loadURL(winURL)
   return win
 }

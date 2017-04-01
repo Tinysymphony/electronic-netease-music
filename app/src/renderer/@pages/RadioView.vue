@@ -66,7 +66,6 @@
 </template>
 
 <script>
-import N from '@src/notification'
 export default {
   data () {
     return {}

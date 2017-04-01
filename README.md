@@ -1,4 +1,4 @@
-## electronic-netease-music
+## electronic-netease-music [![Build Status](https://travis-ci.org/Tinysymphony/electronic-netease-music.svg?branch=master)](https://travis-ci.org/Tinysymphony/electronic-netease-music)
 
 NetEase Music Electron Application (`_(:з」∠)_`)...基于Electron的山寨Mac版网易云音乐
 

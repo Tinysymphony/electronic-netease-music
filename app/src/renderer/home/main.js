@@ -9,6 +9,8 @@ import routes from './routes'
 
 window.$n = notification;
 
+electron.webFrame.setZoomLevelLimits(1, 1);
+
 Vue.use({
   // custom hook
   install(Vue) {

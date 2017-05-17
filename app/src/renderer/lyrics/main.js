@@ -4,6 +4,9 @@ import electron from 'electron'
 import notification from '@src/notification'
 import $ipc from '@src/IPC_CONSTANTS'
 import Lyrics from './Lyrics'
+
+electron.webFrame.setZoomLevelLimits(1, 1);
+
 Vue.use({
   // custom hook
   install(Vue) {
